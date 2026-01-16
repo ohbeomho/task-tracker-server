@@ -9,7 +9,7 @@ router.get("/space/:spaceId", taskController.getSpaceTasks);
 router.post("/", taskController.createTask);
 
 // Update a task
-router.put("/:id", taskController.updateTask);
+router.patch("/:id", taskController.updateTask);
 
 // Delete a task
 router.delete("/:id", taskController.deleteTask);
