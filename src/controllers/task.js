@@ -5,8 +5,17 @@ exports.getSpaceTasks = async (req, res) => {
   try {
     const { spaceId } = req.params;
 
+    // Check if space with spaceId exists
+    const spaceCheck = await db.query(
+      "SELECT id FROM task_schema.space WHERE id = $1",
+      [spaceId],
+    );
+    if (spaceCheck.rows.length === 0) {
+      return res.status(404).json({ error: "Space not found" });
+    }
+
     const { rows } = await db.query(
-      "SELECT * FROM task_schema.task WHERE space_id = $1",
+      "SELECT * FROM task_schema.task WHERE space_id = $1 ORDER BY id ASC",
       [spaceId],
     );
     res.json(rows);
