@@ -50,11 +50,11 @@ exports.createTask = async (req, res) => {
 exports.updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { content, done } = req.body;
+    const { content, status } = req.body;
 
     const { rows } = await db.query(
-      `UPDATE task_schema.task SET "content" = COALESCE($1, "content"), "done" = COALESCE($2, "done") WHERE id = $3 RETURNING *`,
-      [content, done, id],
+      `UPDATE task_schema.task SET "content" = COALESCE($1, "content"), "status" = COALESCE($2, "status") WHERE id = $3 RETURNING *`,
+      [content, status, id],
     );
 
     if (rows.length === 0) {
