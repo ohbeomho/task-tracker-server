@@ -3,8 +3,10 @@ const db = require("../config/db");
 // Create new space
 exports.createSpace = async (req, res) => {
   try {
+    const { name } = req.body;
     const { rows } = await db.query(
-      "INSERT INTO task_schema.space DEFAULT VALUES RETURNING *",
+      "INSERT INTO task_schema.space (name) VALUES ($1) RETURNING *",
+      [name],
     );
 
     res.status(201).json(rows[0]);
