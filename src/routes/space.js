@@ -8,4 +8,6 @@ router.post("/", spaceController.createSpace);
 // Delete a space
 router.delete("/:id", spaceController.deleteSpace);
 
+router.get("/:id", spaceController.getSpace);
+
 module.exports = router;
