@@ -5,13 +5,6 @@ const taskController = require("../controllers/task");
 // Get all tasks from space with spaceId
 router.get("/space/:spaceId", taskController.getSpaceTasks);
 
-// Create a new task
-router.post("/", taskController.createTask);
-
-// Update a task
-router.patch("/:id", taskController.updateTask);
-
-// Delete a task
-router.delete("/:id", taskController.deleteTask);
+router.post("/bulk", taskController.bulkUpdateTasks);
 
 module.exports = router;
